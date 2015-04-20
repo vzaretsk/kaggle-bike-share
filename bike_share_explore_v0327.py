@@ -41,17 +41,34 @@ train_set_df["nweekcount"] = by_week_gp["nweekcount"].transform(lambda x: x / x.
 # for week, group in by_week_gp:
 #     plt.plot(group["count"])
 
-plt.figure(fig_num)
-plt.title("week stack, normalized by month")
-fig_num += 1
+# plt.figure(fig_num)
+# plt.title("week stack, normalized by month")
+# fig_num += 1
+weekly_df = pd.DataFrame()
 for week, group in by_week_gp:
-    # in some cases the number of hours is significantly different than a multiple of 24
-    # I didn't debug the root cause, but I skip plotting those weeks
-    missing_hours = len(group["nmoncount"]) % 24
-    if missing_hours not in (0, 23):
-        print("week {} has {} missing hours, skipping".format(week, missing_hours))
-    else:
-        plt.plot(group["nmoncount"])
+    year_offset = int(week[0] - 2011)
+    week_offset = int(week[1] - 1)
+    # before = group.index[0].weekday()
+    group.index = group.index - pd.offsets.DateOffset(weeks=week_offset + 52*year_offset)
+    # after = group.index[0].weekday()
+    # if before-after != 0:
+    #     print("before {}, after {}".format(before, after))
+    weekly_df[week] = group["nmoncount"]
+    # replaced all of the code below with a DataFrame containing weekly data
+    # # in some cases the number of hours is significantly different than a multiple of 24
+    # # this is due to missing data), I skip plotting those weeks, very crude code
+    # missing_hours = len(group["nmoncount"]) % 24
+    # if missing_hours not in (0, 23):
+    #     print("week {} has {} missing hours, skipping".format(week, missing_hours))
+    # else:
+    #     plt.plot(group["nmoncount"])
+
+plt.figure(fig_num)
+plt.title("weekly average, normalized by month")
+fig_num += 1
+weekly_df.mean(axis=1).plot()
+# for week in weekly_df:
+#     weekly_df[week].plot()
 
 # normalizing by week is giving poor results, possibly due to partial weeks
 # plt.figure(fig_num)
@@ -61,6 +78,7 @@ for week, group in by_week_gp:
 #     plt.plot(group["nweekcount"])
 
 monthly_df_list = []
+monthly_df = pd.DataFrame()
 for month, group in by_month_gp:
     # offset to the same year, month, and to start on Monday for plotting convenience
     year_offset = group.index[0].year - 2011
@@ -71,11 +89,17 @@ for month, group in by_month_gp:
     group.index = group.index + pd.offsets.DateOffset(days=original_weekday - new_weekday)
     # print(original_weekday, group.index[0].weekday())
     monthly_df_list.append(group["nmoncount"])
+    monthly_df[month] = group["nmoncount"]
 
 plt.figure(fig_num)
-plt.title("month stack")
+plt.title("month stack, aligned by weekday")
 fig_num += 1
 for month in monthly_df_list:
     month.plot()
+
+plt.figure(fig_num)
+plt.title("monthly average, normalized by month")
+fig_num += 1
+monthly_df.mean(axis=1).plot()
 
 plt.show()
