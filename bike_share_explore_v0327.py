@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import statsmodels.tsa.stattools as ts
 
 fig_num = 1
 
@@ -9,7 +10,10 @@ fig_num = 1
 train_set_df = pd.read_csv("train.csv", parse_dates=["datetime"], index_col="datetime")
 # train_set_df = pd.read_csv("train.csv")
 
-# train_set_df["count"].plot()
+plt.figure(fig_num)
+plt.title("raw data")
+fig_num += 1
+train_set_df["count"].plot()
 # train_set_df["casual"].plot()
 # # secondary_y=True
 
