@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import statsmodels.tsa.stattools as ts
+import os.path
 
 fig_num = 1
 
@@ -57,56 +57,54 @@ print(by_month_gp["count"].mean()[:5] - by_month_orig_gp["count"].mean()[:5])
 # train_set_clean_df["count"][:pd.datetime(2011, 1, 20)].plot(style="-+b")
 # fig_num += 1
 
-monthly_values_list = []
-for month, group in by_month_gp:
-    monthly_values_list.append(group["ncount"].values)
+# plt.show()
 
-days_lag = 2
-# compute the autocorrelation of each normalized monthly count
-# http://statsmodels.sourceforge.net/0.6.0/generated/statsmodels.tsa.stattools.acf.html
-acf_list = []
-for month in monthly_values_list:
-    acf_list.append(ts.acf(month, nlags=days_lag*24, unbiased=True, fft=False))
+# backfill missing workingday information for previously interpolated values
+train_set_clean_df["workingday_clean"] = by_month_gp["workingday"].fillna(method="bfill")
 
-# compute the partial autocorrelation of each normalized monthly count
-# http://statsmodels.sourceforge.net/0.6.0/generated/statsmodels.tsa.stattools.pacf.html
-pacf_list = []
-for month in monthly_values_list:
-    pacf_list.append(ts.pacf(month, nlags=days_lag*24, method="ywunbiased"))
+# group the data by work day or not
+by_workingday_gp = train_set_clean_df.groupby("workingday_clean")
 
-acf_len = len(acf_list[0])
-acf = np.zeros((24, acf_len))
-pacf = np.zeros((24, acf_len))
-
-for index, values in enumerate(acf_list):
-    acf[index, :] = values
-
-for index, values in enumerate(pacf_list):
-    pacf[index, :] = values
-
-# # using pandas to plot the values because I'm very lazy
-# acf_plot = pd.DataFrame(acf.T)
-# pacf_plot = pd.DataFrame(pacf.T)
-#
-# acf_plot.plot(title="acf", legend=None)
-# fig_num += 1
-#
-# pacf_plot.plot(title="pacf", legend=None)
+# this seems to have a few not usually celebrated holidays, such as tax day
+# plt.figure(fig_num)
+# by_workingday_gp["ncount"].plot()
 # fig_num += 1
 
-# the acf isn't very insightful but the pacf is useful if I wanted to build an autoregressive model
+weekend_count, workday_count = by_workingday_gp["ncount"].count()
+
+weekends = by_workingday_gp["ncount"].get_group(0).values
+workdays = by_workingday_gp["ncount"].get_group(1).values
+
+weekends = weekends.reshape((weekend_count//24, 24))
+workdays = workdays.reshape((workday_count//24, 24))
+
+# average to obtain a typical workday and weekend, normalize to a sum of 1
+workday_trend = workdays.mean(axis=0)
+print("workday sum before normalization: {:0.6f}".format(workday_trend.sum()))
+workday_trend = workday_trend/workday_trend.sum()
+
+weekend_trend = weekends.mean(axis=0)
+print("weekend sum before normalization: {:0.6f}".format(weekend_trend.sum()))
+weekend_trend = weekend_trend/weekend_trend.sum()
+
+# may be able to obtain the same result by grouping by workday+hour and averaging across hours
+# also I ignored daylight savings, might need to check what effect this had
+
 plt.figure(fig_num)
-plt.title("mean acf and pacf")
-plt.xticks(range(0, 24*days_lag + 1, 4))
-plt.plot(acf.mean(axis=0), ".-r")
-plt.plot(pacf.mean(axis=0), ".-b")
+plt.title("workday and weekend trends")
+plt.plot(range(24), workday_trend, ".-", label="workday")
+plt.plot(range(24, 48), weekend_trend, ".-", label="weekend")
+plt.legend()
 fig_num += 1
 
-# absolute value of mean pacf
-plt.figure(fig_num)
-plt.title("abs mean pacf")
-plt.xticks(range(0, 24*days_lag + 1, 4))
-plt.plot(np.abs(pacf.mean(axis=0)), ".-b")
-fig_num += 1
+# save cleaned data to a new csv
+if not os.path.exists("train_clean.csv"):
+    train_set_clean_df.to_csv("train_clean.csv")
+
+# save workday and weekend trends to csv
+if not os.path.exists("workday_trend.csv"):
+    np.savetxt("workday_trend.csv", workday_trend, delimiter=",")
+if not os.path.exists("weekend_trend.csv"):
+    np.savetxt("weekend_trend.csv", workday_trend, delimiter=",")
 
 plt.show()
