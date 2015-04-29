@@ -23,11 +23,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="extract_trends.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="trend_predict.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/trend_predict.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.69849247" vertical-offset="962" max-vertical-offset="1360">
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="extract_trends.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/extract_trends.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6532663" vertical-offset="1500" max-vertical-offset="2320">
-              <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1922" max-vertical-offset="2320">
+              <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -48,6 +60,7 @@
         <option value="$PROJECT_DIR$/bike_share_explore_v0327.py" />
         <option value="$PROJECT_DIR$/bike_share_explore_acf_v0426.py" />
         <option value="$PROJECT_DIR$/extract_trends.py" />
+        <option value="$PROJECT_DIR$/trend_predict.py" />
       </list>
     </option>
   </component>
@@ -141,7 +154,7 @@
       <recent name="C:\Users\user\PycharmProjects\kaggle-bike-share" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.extract_trends">
+  <component name="RunManager" selected="Python.trend_predict">
     <configuration default="false" name="bike_share_explore_v0327" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -191,6 +204,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="kaggle_bike_share" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/extract_trends.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="trend_predict" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="kaggle_bike_share" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trend_predict.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -317,16 +348,18 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Python.bike_share_explore_v0327" />
       <item index="1" class="java.lang.String" itemvalue="Python.bike_share_explore_acf_v0426" />
       <item index="2" class="java.lang.String" itemvalue="Python.extract_trends" />
+      <item index="3" class="java.lang.String" itemvalue="Python.trend_predict" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python.extract_trends" />
-        <item index="1" class="java.lang.String" itemvalue="Python.bike_share_explore_acf_v0426" />
-        <item index="2" class="java.lang.String" itemvalue="Python.bike_share_explore_v0327" />
+      <list size="4">
+        <item index="0" class="java.lang.String" itemvalue="Python.trend_predict" />
+        <item index="1" class="java.lang.String" itemvalue="Python.extract_trends" />
+        <item index="2" class="java.lang.String" itemvalue="Python.bike_share_explore_acf_v0426" />
+        <item index="3" class="java.lang.String" itemvalue="Python.bike_share_explore_v0327" />
       </list>
     </recent_temporary>
   </component>
@@ -344,7 +377,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="724" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -354,7 +387,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31239936" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31239936" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31239936" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -556,8 +589,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/extract_trends.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6532663" vertical-offset="1500" max-vertical-offset="2320">
-          <caret line="88" column="0" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1922" max-vertical-offset="2320">
+          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trend_predict.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.69849247" vertical-offset="962" max-vertical-offset="1360">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

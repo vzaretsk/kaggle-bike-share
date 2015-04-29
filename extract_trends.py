@@ -105,6 +105,6 @@ if not os.path.exists("train_clean.csv"):
 if not os.path.exists("workday_trend.csv"):
     np.savetxt("workday_trend.csv", workday_trend, delimiter=",")
 if not os.path.exists("weekend_trend.csv"):
-    np.savetxt("weekend_trend.csv", workday_trend, delimiter=",")
+    np.savetxt("weekend_trend.csv", weekend_trend, delimiter=",")
 
 plt.show()
