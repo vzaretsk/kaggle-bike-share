@@ -3,6 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os.path
 
+# if true, will mark certain days as workdays that are not marked as such in the training data
+# for example tax day
+fix_workdays = True
+
+# if true, will overwrite existing files
+overwrite = True
+
 fig_num = 1
 
 # load the data, parse "datetime" column as a date and use it as an index
@@ -62,6 +69,11 @@ print(by_month_gp["count"].mean()[:5] - by_month_orig_gp["count"].mean()[:5])
 # backfill missing workingday information for previously interpolated values
 train_set_clean_df["workingday_clean"] = by_month_gp["workingday"].fillna(method="bfill")
 
+# mark several rarely celebrated holidays, such as tax day, as work days
+if fix_workdays:
+    train_set_clean_df["workingday_clean"][pd.datetime(2011,4,15,0):pd.datetime(2011,4,15,23)] = 1
+    train_set_clean_df["workingday_clean"][pd.datetime(2012,4,16,0):pd.datetime(2012,4,16,23)] = 1
+
 # group the data by work day or not
 by_workingday_gp = train_set_clean_df.groupby("workingday_clean")
 
@@ -98,13 +110,13 @@ plt.legend()
 fig_num += 1
 
 # save cleaned data to a new csv
-if not os.path.exists("train_clean.csv"):
+if not os.path.exists("train_clean.csv") or overwrite:
     train_set_clean_df.to_csv("train_clean.csv")
 
 # save workday and weekend trends to csv
-if not os.path.exists("workday_trend.csv"):
+if not os.path.exists("workday_trend.csv") or overwrite:
     np.savetxt("workday_trend.csv", workday_trend, delimiter=",")
-if not os.path.exists("weekend_trend.csv"):
+if not os.path.exists("weekend_trend.csv") or overwrite:
     np.savetxt("weekend_trend.csv", weekend_trend, delimiter=",")
 
 plt.show()

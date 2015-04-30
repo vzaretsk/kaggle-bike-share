@@ -3,6 +3,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os.path
 
+# if true, will overwrite existing files
+overwrite = True
+
 fig_num = 1
 
 # load the cleaned data, parse "datetime" column as a date and use it as an index
@@ -52,11 +55,30 @@ def train_trend_predict(row):
 # calculate the trend predicted values for all available data
 train_set_clean_df["trend"] = train_set_clean_df.apply(train_trend_predict, axis=1)
 
+# natural log of the ratio of the actual counts and the trend, use for checking results and training
+# i originally through linear would be simpler but then realized that the log handles much better
+# the symmetry between, for example a ratio of 2 and 0.5
+train_set_clean_df["ratio"] = np.log((train_set_clean_df["count"] + 1) / (train_set_clean_df["trend"] + 1))
+
+score = (train_set_clean_df["ratio"]**2).mean()
+print("training data score: {:0.4f}".format(score))
+
 plt.figure(fig_num)
 plt.title("count vs trend prediction for training data")
-train_set_clean_df["count"].plot(style=".-b", label="count")
+train_set_clean_df["count"].plot(style=".-k", label="count")
 train_set_clean_df["trend"].plot(style="x-r", label="trend")
 plt.legend()
 fig_num += 1
+
+# some of the biggest outliers are due to tax day marked as not a workday and other rarely celebrated holidays
+# fixed by modifying those days in the cleaned training data
+plt.figure(fig_num)
+plt.title("log ratio of count+1/trend+1")
+train_set_clean_df["ratio"].plot(style=".-b", label="ratio")
+fig_num += 1
+
+# save data and predicted trend to a new csv
+if not os.path.exists("train_trend.csv") or overwrite:
+    train_set_clean_df.to_csv("train_trend.csv")
 
 plt.show()
