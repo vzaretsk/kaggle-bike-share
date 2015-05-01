@@ -25,7 +25,10 @@ rolling_sum = lambda x: pd.stats.moments.rolling_sum(x, window=window_days*24, m
 train_set_clean_df["3day_sum"] = by_month_gp["count"].transform(rolling_sum)
 # shift the data 1 hour forward, i.e. the sum at the current time period shouldn't include the current
 # time period itself
-train_set_clean_df["3day_sum"] = train_set_clean_df["3day_sum"].shift(periods=1)
+
+# including the freq="H" is important, otherwise the behavior is strange
+# for example, data is shifted to the start of the next month
+train_set_clean_df["3day_sum"] = train_set_clean_df["3day_sum"].shift(periods=1, freq="H")
 
 # create hour column, useful for trend predicting
 # this is inefficient, code below is better
