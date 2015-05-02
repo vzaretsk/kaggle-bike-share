@@ -61,6 +61,10 @@ test_set_clean_df["data_set"] = TEST_SET
 
 # combine the train and test sets and shift the 3day_sum by 1 hour forward
 # shift the data 1 hour forward, i.e. the sum at the current time period shouldn't include the current
+# doing this seems to break timerange access, i.e. the data is the first data set followed by the second
+# the index is not sorted
+# this may be why some of the shifting operations were having weird behavior
+# not tested, solution maybe to call pandas.DataFrame.sort_index
 combined_df = pd.concat([train_set_clean_df, test_set_clean_df])
 
 # including the freq="H" is important, otherwise the behavior is strange
@@ -103,7 +107,6 @@ def test_trend_predict(row):
         combined_df.loc[time_current, "count"] = workday_trend[time_current.hour] * new_3day_sum / 3
     elif row["workingday_clean"] == 0:  # weekend or holiday
         combined_df.loc[time_current, "count"] = weekend_trend[time_current.hour] * new_3day_sum / 3
-
     return
 
 # this is very slow for some reason

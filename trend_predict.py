@@ -63,7 +63,7 @@ train_set_clean_df["trend"] = train_set_clean_df.apply(train_trend_predict, axis
 # the symmetry between, for example a ratio of 2 and 0.5
 train_set_clean_df["ratio"] = np.log((train_set_clean_df["count"] + 1) / (train_set_clean_df["trend"] + 1))
 
-score = (train_set_clean_df["ratio"]**2).mean()
+score = np.sqrt((train_set_clean_df["ratio"]**2).mean())
 print("training data score: {:0.4f}".format(score))
 
 plt.figure(fig_num)
