@@ -23,17 +23,17 @@ if __name__ == '__main__':
 
     # SETTINGS AND GLOBAL CONSTANTS
 
-    # if true, will overwrite existing files
-    overwrite = True
-
-    TRAIN_SET, TEST_SET = 0, 1
-    fig_num = 1
-
     # if false, will skip grid search, values used in classifier are still optimimal since
     # i already ran grid search and hard coded the results into the code
     # this is also VERY slow, takes about half a day on my laptop
     # i may be overdoing it by using too many estimators
     do_optimize = False
+
+    # if true, will overwrite existing files
+    overwrite = True
+
+    TRAIN_SET, TEST_SET = 0, 1
+    fig_num = 1
 
     # LOAD SAVED RESULTS AND DATA SETS
 
@@ -44,19 +44,19 @@ if __name__ == '__main__':
     # CLEAN UP AND PREPROCESS DATA
 
     # these columns are not needed
-    combined_df.drop(["season", "workingday", "casual", "registered"], axis=1, inplace=True)
+    combined_df.drop(["season", "workingday_clean", "casual", "registered"], axis=1, inplace=True)
 
     # create year, month, dayofweek, and hour columns, used for classifier training in place of season
     year_f = lambda x: x.index.year
     month_f = lambda x: x.index.month
     dayofweek_f = lambda x: x.index.dayofweek
-    dayofyear_f = lambda x: x.index.dayofyear
+    # dayofyear_f = lambda x: x.index.dayofyear
     hour_f = lambda x: x.index.hour
     # could use any column besides "count", just need it to be a single column so result is a series, not a data frame
     combined_df["year"] = combined_df.apply(month_f)["count"]
     combined_df["month"] = combined_df.apply(month_f)["count"]
     combined_df["day_of_week"] = combined_df.apply(dayofweek_f)["count"]
-    combined_df["day_of_year"] = combined_df.apply(dayofyear_f)["count"]
+    # combined_df["day_of_year"] = combined_df.apply(dayofyear_f)["count"]
     combined_df["hour"] = combined_df.apply(hour_f)["count"]
 
     # create 24h shifted versions of humidity, weather, atemp as potentially useful features
@@ -85,11 +85,11 @@ if __name__ == '__main__':
     adaboost_train_set_df["log_count_diff"] = adaboost_train_set_df["log_count"] - \
                                               adaboost_train_set_df["log_count_gp"]
 
-    # drop all remaining unneeded columns, holiday is very redundant with workingday_clean
-    adaboost_train_set_df = adaboost_train_set_df.drop(["count", "data_set", "holiday", "count_gp"], axis=1)
+    # drop all remaining unneeded columns
+    adaboost_train_set_df = adaboost_train_set_df.drop(["count", "data_set", "count_gp"], axis=1)
     adaboost_train_set_df = adaboost_train_set_df.dropna()
 
-    adaboost_test_set_df = adaboost_test_set_df.drop(["count", "data_set", "holiday", "count_gp"], axis=1)
+    adaboost_test_set_df = adaboost_test_set_df.drop(["count", "data_set", "count_gp"], axis=1)
     # test set doesn't have log_count values
     adaboost_test_set_df = adaboost_test_set_df.drop(["log_count"], axis=1)
     adaboost_test_set_df = adaboost_test_set_df.dropna()

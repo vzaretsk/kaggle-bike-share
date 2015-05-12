@@ -196,3 +196,305 @@ GridSearchCV(cv=ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None),
        pre_dispatch='2*n_jobs', refit=False, score_func=None,
        scoring='mean_squared_error', verbose=3)
 mean: 0.0801, stdev: 0.0067 MSE for {'n_estimators': 200, 'learning_rate': 0.4, 'loss': 'exponential', 'max_depth': 50}
+search space:
+{'max_features': [1.0], 'n_estimators': [500]}
+cross validation:
+ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None)
+grid search:
+GridSearchCV(cv=ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_features': [1.0], 'n_estimators': [500]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.0739, stdev: 0.0017 MSE for {'max_features': 1.0, 'n_estimators': 500}
+search space:
+{'n_estimators': [500], 'max_features': [0.6, 0.8, 1.0], 'max_depth': [10, 50, 100]}
+cross validation:
+ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None)
+grid search:
+GridSearchCV(cv=ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'n_estimators': [500], 'max_features': [0.6, 0.8, 1.0], 'max_depth': [10, 50, 100]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.0832, stdev: 0.0052 MSE for {'n_estimators': 500, 'max_features': 0.6, 'max_depth': 10}
+mean: 0.0820, stdev: 0.0061 MSE for {'n_estimators': 500, 'max_features': 0.8, 'max_depth': 10}
+mean: 0.0818, stdev: 0.0069 MSE for {'n_estimators': 500, 'max_features': 1.0, 'max_depth': 10}
+mean: 0.0738, stdev: 0.0041 MSE for {'n_estimators': 500, 'max_features': 0.6, 'max_depth': 50}
+mean: 0.0746, stdev: 0.0042 MSE for {'n_estimators': 500, 'max_features': 0.8, 'max_depth': 50}
+mean: 0.0804, stdev: 0.0033 MSE for {'n_estimators': 500, 'max_features': 1.0, 'max_depth': 50}
+mean: 0.0768, stdev: 0.0071 MSE for {'n_estimators': 500, 'max_features': 0.6, 'max_depth': 100}
+mean: 0.0754, stdev: 0.0045 MSE for {'n_estimators': 500, 'max_features': 0.8, 'max_depth': 100}
+mean: 0.0732, stdev: 0.0043 MSE for {'n_estimators': 500, 'max_features': 1.0, 'max_depth': 100}
+search space:
+{'max_leaf_nodes': [None], 'n_estimators': [500], 'max_features': [1.0], 'max_depth': [None]}
+cross validation:
+ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None)
+grid search:
+GridSearchCV(cv=ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_leaf_nodes': [None], 'n_estimators': [500], 'max_features': [1.0], 'max_depth': [None]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.0743, stdev: 0.0056 MSE for {'max_leaf_nodes': None, 'max_depth': None, 'n_estimators': 500, 'max_features': 1.0}
+search space:
+{'max_features': [None, 3], 'n_estimators': [500], 'max_depth': [None], 'max_leaf_nodes': [None]}
+cross validation:
+ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None)
+grid search:
+GridSearchCV(cv=ShuffleSplit(10862, n_iter=5, test_size=0.1, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_features': [None, 3], 'n_estimators': [500], 'max_depth': [None], 'max_leaf_nodes': [None]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.0752, stdev: 0.0063 MSE for {'max_features': None, 'max_leaf_nodes': None, 'max_depth': None, 'n_estimators': 500}
+mean: 0.0779, stdev: 0.0061 MSE for {'max_features': 3, 'max_leaf_nodes': None, 'max_depth': None, 'n_estimators': 500}
+search space:
+{'max_features': [None, 3], 'max_leaf_nodes': [None], 'max_depth': [None], 'n_estimators': [500]}
+cross validation:
+ShuffleSplit(10862, n_iter=5, test_size=0.35, random_state=None)
+grid search:
+GridSearchCV(cv=ShuffleSplit(10862, n_iter=5, test_size=0.35, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_features': [None, 3], 'max_leaf_nodes': [None], 'max_depth': [None], 'n_estimators': [500]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.0780, stdev: 0.0037 MSE for {'max_features': None, 'max_leaf_nodes': None, 'n_estimators': 500, 'max_depth': None}
+mean: 0.0786, stdev: 0.0021 MSE for {'max_features': 3, 'max_leaf_nodes': None, 'n_estimators': 500, 'max_depth': None}
+search space:
+{'max_features': [None], 'max_depth': [10, 33, 100], 'max_leaf_nodes': [None], 'n_estimators': [1000]}
+cross validation:
+ShuffleSplit(10862, n_iter=5, test_size=0.35, random_state=None)
+grid search:
+GridSearchCV(cv=ShuffleSplit(10862, n_iter=5, test_size=0.35, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_features': [None], 'max_depth': [10, 33, 100], 'max_leaf_nodes': [None], 'n_estimators': [1000]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.0839, stdev: 0.0039 MSE for {'max_features': None, 'max_depth': 10, 'n_estimators': 1000, 'max_leaf_nodes': None}
+mean: 0.0763, stdev: 0.0012 MSE for {'max_features': None, 'max_depth': 33, 'n_estimators': 1000, 'max_leaf_nodes': None}
+mean: 0.0754, stdev: 0.0005 MSE for {'max_features': None, 'max_depth': 100, 'n_estimators': 1000, 'max_leaf_nodes': None}
+search space:
+{'n_estimators': [1000], 'max_leaf_nodes': [None], 'max_features': [None], 'max_depth': [None]}
+cross validation:
+ShuffleSplit(10862, n_iter=5, test_size=0.35, random_state=None)
+grid search:
+GridSearchCV(cv=ShuffleSplit(10862, n_iter=5, test_size=0.35, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'n_estimators': [1000], 'max_leaf_nodes': [None], 'max_features': [None], 'max_depth': [None]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.0763, stdev: 0.0026 MSE for {'n_estimators': 1000, 'max_leaf_nodes': None, 'max_features': None, 'max_depth': None}
+search space:
+{'max_features': [None], 'max_depth': [None], 'max_leaf_nodes': [None], 'n_estimators': [1000]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_features': [None], 'max_depth': [None], 'max_leaf_nodes': [None], 'n_estimators': [1000]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1125, stdev: 0.0198 MSE for {'max_features': None, 'n_estimators': 1000, 'max_leaf_nodes': None, 'max_depth': None}
+search space:
+{'max_features': [None], 'n_estimators': [500], 'max_leaf_nodes': [None], 'max_depth': [100]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_features': [None], 'n_estimators': [500], 'max_leaf_nodes': [None], 'max_depth': [100]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1128, stdev: 0.0197 MSE for {'max_features': None, 'n_estimators': 500, 'max_leaf_nodes': None, 'max_depth': 100}
+search space:
+{'max_depth': [15], 'max_leaf_nodes': [None], 'n_estimators': [500], 'max_features': [3]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_depth': [15], 'max_leaf_nodes': [None], 'n_estimators': [500], 'max_features': [3]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1125, stdev: 0.0204 MSE for {'max_depth': 15, 'max_leaf_nodes': None, 'n_estimators': 500, 'max_features': 3}
+search space:
+{'max_features': [3], 'max_depth': [10], 'max_leaf_nodes': [None], 'n_estimators': [500]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_features': [3], 'max_depth': [10], 'max_leaf_nodes': [None], 'n_estimators': [500]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1125, stdev: 0.0184 MSE for {'n_estimators': 500, 'max_depth': 10, 'max_leaf_nodes': None, 'max_features': 3}
+search space:
+{'n_estimators': [100], 'max_features': [3], 'max_depth': [10], 'max_leaf_nodes': [None]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'n_estimators': [100], 'max_features': [3], 'max_depth': [10], 'max_leaf_nodes': [None]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1131, stdev: 0.0182 MSE for {'max_features': 3, 'max_depth': 10, 'n_estimators': 100, 'max_leaf_nodes': None}
+search space:
+{'max_leaf_nodes': [None], 'max_features': [3], 'max_depth': [3], 'n_estimators': [100]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_leaf_nodes': [None], 'max_features': [3], 'max_depth': [3], 'n_estimators': [100]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1247, stdev: 0.0184 MSE for {'max_leaf_nodes': None, 'n_estimators': 100, 'max_depth': 3, 'max_features': 3}
+search space:
+{'max_features': [3, None], 'max_depth': [15], 'n_estimators': [200], 'max_leaf_nodes': [None]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_features': [3, None], 'max_depth': [15], 'n_estimators': [200], 'max_leaf_nodes': [None]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1123, stdev: 0.0201 MSE for {'max_features': 3, 'max_depth': 15, 'n_estimators': 200, 'max_leaf_nodes': None}
+mean: 0.1128, stdev: 0.0197 MSE for {'max_features': None, 'max_depth': 15, 'n_estimators': 200, 'max_leaf_nodes': None}
+search space:
+{'max_depth': [15], 'n_estimators': [200], 'max_leaf_nodes': [None], 'max_features': [2]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_depth': [15], 'n_estimators': [200], 'max_leaf_nodes': [None], 'max_features': [2]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1137, stdev: 0.0195 MSE for {'max_depth': 15, 'n_estimators': 200, 'max_leaf_nodes': None, 'max_features': 2}
+search space:
+{'max_leaf_nodes': [None], 'max_features': [None], 'max_depth': [15], 'n_estimators': [200]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_leaf_nodes': [None], 'max_features': [None], 'max_depth': [15], 'n_estimators': [200]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1125, stdev: 0.0197 MSE for {'n_estimators': 200, 'max_leaf_nodes': None, 'max_depth': 15, 'max_features': None}
+search space:
+{'max_leaf_nodes': [None], 'max_depth': [15], 'max_features': [None], 'n_estimators': [200]}
+cross validation:
+sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None)
+grid search:
+GridSearchCV(cv=sklearn.cross_validation.KFold(n=10862, n_folds=4, shuffle=False, random_state=None),
+       error_score='raise',
+       estimator=RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=None,
+           max_features='auto', max_leaf_nodes=None, min_samples_leaf=1,
+           min_samples_split=2, min_weight_fraction_leaf=0.0,
+           n_estimators=10, n_jobs=1, oob_score=False, random_state=None,
+           verbose=0, warm_start=False),
+       fit_params={}, iid=True, loss_func=None, n_jobs=2,
+       param_grid={'max_leaf_nodes': [None], 'max_depth': [15], 'max_features': [None], 'n_estimators': [200]},
+       pre_dispatch='2*n_jobs', refit=False, score_func=None,
+       scoring='mean_squared_error', verbose=3)
+mean: 0.1133, stdev: 0.0205 MSE for {'max_depth': 15, 'max_features': None, 'n_estimators': 200, 'max_leaf_nodes': None}
