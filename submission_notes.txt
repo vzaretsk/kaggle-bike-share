@@ -1,0 +1,19 @@
+rnd forest registered, casual split
+    max_depth=25, max_features=None, max_leaf_nodes=None, n_estimators=500 score 0.41817
+rnd forest registered, casual split
+    max_depth=None, max_features=None, max_leaf_nodes=None, n_estimators=500 score 0.41849
+rnd forest registered, casual split
+    n_estimators=500, max_features=0.5, max_depth=15, max_leaf_nodes=None score 0.42106
+
+rnd forest max_depth=100, max_features=1.0, max_leaf_nodes=None, n_estimators=500 score 0.42547
+adaboost max_depth=500, n_estimators=2000, loss="exponential" submission score 0.43043
+adaboost max_depth=50, n_estimators=500, loss="exponential" submission score 0.43066
+adaboost max_depth=500, n_estimators=2000, loss="linear" submission score 0.43089
+adaboost max_depth=100, n_estimators=2000, loss="exponential" submission score 0.43154
+adaboost max_depth=50, n_estimators=2000, learning_rate=0.4, loss="exponential" submission score 0.43167
+adaboost max_depth=10, n_estimators=2000, loss="exponential" submission score 0.43461
+
+gp with registered casual split 0.52064
+gp without registered casual split 0.52292
+gp with registered casual split, geometric averaging 0.52653
+3 day moving average 0.54306
