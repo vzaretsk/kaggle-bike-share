@@ -1,9 +1,130 @@
-rnd forest registered, casual split
-    max_depth=25, max_features=None, max_leaf_nodes=None, n_estimators=500 score 0.41817
-rnd forest registered, casual split
-    max_depth=None, max_features=None, max_leaf_nodes=None, n_estimators=500 score 0.41849
-rnd forest registered, casual split
-    n_estimators=500, max_features=0.5, max_depth=15, max_leaf_nodes=None score 0.42106
+ridge without offset 0.40181
+	OFFSET = 0
+	{'fit_intercept': False, 'alpha': 1.0, 'tol': 0.001, 'solver': 'sparse_cg'}
+	similar results with and without offset, changing the value of offset, to for example 0.1, gives a different fit, it needs to be tuned
+
+gbt stack score 0.40983
+	GradientBoostingRegressor(alpha=0.9, init=None, learning_rate=0.01, loss='ls',
+             max_depth=10, max_features=None, max_leaf_nodes=100,
+             min_samples_leaf=1, min_samples_split=2,
+             min_weight_fraction_leaf=0.0, n_estimators=500,
+             random_state=None, subsample=0.7, verbose=0, warm_start=False)
+
+rf stack score 0.41274
+	RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=20,
+           max_features=None, max_leaf_nodes=16384, min_samples_leaf=2,
+           min_samples_split=4, min_weight_fraction_leaf=0.0,
+           n_estimators=1000, n_jobs=4, oob_score=False, random_state=None,
+           verbose=0, warm_start=False)
+
+ridge with offset score 0.40193
+	OFFSET = 1
+	{'fit_intercept': False, 'alpha': 1.0, 'tol': 0.001, 'solver': 'sparse_cg'}
+
+
+rf daily (multi-output) + gb trees registered, casual split score 0.39824
+	same as optimal but with new features
+
+rf daily (multi-output) + gb trees registered, casual split score 0.40409
+	cv score 0.46259
+	daily rf
+		n_estimators=10000, max_features=0.2, max_depth=20, max_leaf_nodes=None
+	hourly gbt
+		loss="ls", learning_rate=0.01, max_depth=10, max_features=None,
+        max_leaf_nodes=100, subsample=0.7, n_estimators=500
+
+rf daily (multi-output) + rf forest registered, casual parallel score 0.40529
+	score of 0.40528 if 8x the size, no improvement past 500
+	cv score 0.46197
+	daily rf same
+	hourly rf
+		"max_features": None, "max_depth": 20, "max_leaf_nodes": 2**10, "min_samples_split": 8,
+        "min_samples_leaf": 4, "n_estimators": 500
+
+rf daily (multi-output) + bag of adaboost score 0.40739, 0.40556 with 0.1 learning rate
+	cv score 0.46022
+	daily rf same
+	BaggingRegressor(base_estimator=AdaBoostRegressor(base_estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, max_features=None,
+           max_leaf_nodes=1024, min_samples_leaf=4, min_samples_split=8,
+           min_weight_fraction_leaf=0.0, random_state=None,
+           splitter='best'),
+         learning_rate=0.5, loss='linear', n_estimators=50,
+         random_state=None),
+         bootstrap=True, bootstrap_features=False, max_features=1.0,
+         max_samples=0.7, n_estimators=20, n_jobs=3, oob_score=False,
+         random_state=None, verbose=0)
+
+
+
+rf daily (multi-output) + adaboost score 0.41570
+	cv score 0.46249
+	daily rf same
+	AdaBoostRegressor(base_estimator=DecisionTreeRegressor(criterion='mse', max_depth=None, max_features=None,
+           max_leaf_nodes=128, min_samples_leaf=4, min_samples_split=8,
+           min_weight_fraction_leaf=0.0, random_state=None,
+           splitter='best'),
+         learning_rate=0.01, loss='linear', n_estimators=500,
+         random_state=None)
+
+rf daily (multi-output) + rf forest registered, casual paralle score 0.41331
+	cv score 0.462
+	daily rf same
+	hourly rf
+		"max_features": 0.2, "max_depth": 25,
+		"max_leaf_nodes": None, "min_samples_split": 8,
+		"min_samples_leaf": 4, "n_estimators": 4000		
+		
+rf daily (parallel) + gb trees registered, casual split score 0.41012
+	same as 0.40409 => multi-output seems to be better
+
+extra trees daily (parallel) + gb trees registered, casual split score 0.42085
+	daily extra
+		n_estimators=10000, max_features=0.2, max_depth=20, max_leaf_nodes=None
+	hourly gbt
+		same
+
+rf daily + gb trees registered, casual split score 0.40628
+	loss="ls", learning_rate=0.01, max_depth=10, max_features=None,
+        max_leaf_nodes=100, subsample=0.7, n_estimators=500
+rf daily + rf registered, casual split score 0.41079
+    max_depth=25, max_features=None, max_leaf_nodes=None, n_estimators=500
+
+rf daily (parallel) + rf hourly split score 0.41749
+    daily_regist_rf_params = {"n_estimators": 10000, "max_features": 0.2, "max_depth": 20,
+                           "min_samples_split": 2, "min_samples_leaf": 1,
+                           "max_leaf_nodes": None}
+	hourly_regist_rf_params = {"max_features": 0.2, "max_depth": 24,
+                        "max_leaf_nodes": None, "min_samples_split": 4,
+                        "min_samples_leaf": 2, "n_estimators": 4000}	
+
+						
+gb trees registered, casual split score 0.41556
+	loss="ls", learning_rate=0.01, max_depth=10, max_features=None,
+        max_leaf_nodes=100, subsample=0.7, n_estimators=500
+rnd forest registered, casual split score 0.41771
+    max_depth=25, max_features=None, max_leaf_nodes=None, n_estimators=500
+
+rf daily -> rf hourly score 0.43400
+	joint cv, why so poor?
+
+rf daily -> rf hourly -> rf all score 0.42437
+	houly done using only hour, weekend, workday, day_of_week
+	still not as good as gaussian trend
+rf daily -> rf hourly -> rf all score 0.45497, 0.45657
+	must be overfitting
+
+rf daily without daily trend + rf registered, casual split score 0.42643
+    max_depth=25, max_features=None, max_leaf_nodes=None, n_estimators=500
+
+rnd forest registered, casual split score 0.41817
+    max_depth=25, max_features=None, max_leaf_nodes=None, n_estimators=500
+rnd forest registered, casual split score 0.41849
+    max_depth=None, max_features=None, max_leaf_nodes=None, n_estimators=500
+rnd forest registered, casual split score 0.42106
+    n_estimators=500, max_features=0.5, max_depth=15, max_leaf_nodes=None
+gb trees registered, casual split score 0.42494
+	loss="ls", learning_rate=0.01, max_depth=10, max_features=None,
+        max_leaf_nodes=None, subsample=1.0, n_estimators=500
 
 rnd forest max_depth=100, max_features=1.0, max_leaf_nodes=None, n_estimators=500 score 0.42547
 adaboost max_depth=500, n_estimators=2000, loss="exponential" submission score 0.43043
@@ -13,6 +134,8 @@ adaboost max_depth=100, n_estimators=2000, loss="exponential" submission score 0
 adaboost max_depth=50, n_estimators=2000, learning_rate=0.4, loss="exponential" submission score 0.43167
 adaboost max_depth=10, n_estimators=2000, loss="exponential" submission score 0.43461
 
+random forest without gp trend 0.47755
+rf daily trend with registered casual split 0.47809
 gp with registered casual split 0.52064
 gp without registered casual split 0.52292
 gp with registered casual split, geometric averaging 0.52653
